@@ -304,6 +304,7 @@ class BagWidget(QWidget):
 
         try:
             bag = rosbag.Bag(filename)
+            self.boton_captureImage.setEnabled(True)
             self.play_button.setEnabled(True)
             self.thumbs_button.setEnabled(True)
             self.zoom_in_button.setEnabled(True)
