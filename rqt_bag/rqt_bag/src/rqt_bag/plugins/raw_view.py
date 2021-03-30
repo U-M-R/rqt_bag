@@ -43,12 +43,8 @@ from .topic_message_view import TopicMessageView
 # compatibility fix for python2/3
 try:
     long
-    bytes_to_str = str
 except NameError:
     long = int
-    def bytes_to_str(x):
-        return codecs.utf_8_decode(str(x).encode(), 'ignore')[0]
-
 
 class RawView(TopicMessageView):
     name = 'Raw'
@@ -208,7 +204,7 @@ class MessageTree(QTreeWidget):
 
         elif type(obj) in [str, bool, int, long, float, complex, rospy.Time]:
             # Ignore any binary data
-            obj_repr = bytes_to_str(obj)
+            obj_repr = codecs.utf_8_decode(str(obj).encode(), 'ignore')[0]
 
             # Truncate long representations
             if len(obj_repr) >= 50:

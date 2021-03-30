@@ -91,7 +91,7 @@ class TopicPopupWidget(QWidget):
 
         super(TopicPopupWidget, self).show()
 
-
+####################################################### MENU SIN BAG CARGADO ###############################################################33
 class TimelinePopupMenu(QMenu):
 
     """

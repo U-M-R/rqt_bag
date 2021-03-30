@@ -96,7 +96,11 @@ class BagWidget(QWidget):
         self.record_button.setIcon(QIcon.fromTheme('media-record'))
         self.load_button.setIcon(QIcon.fromTheme('document-open'))
         self.save_button.setIcon(QIcon.fromTheme('document-save'))
+####################################################################################################################################
+        self.boton_captureImage.setIcon(QIcon.fromTheme('window-new'))
 
+        self.boton_captureImage.clicked[bool].connect(self._handle_captureImage_clicked)
+####################################################################################################################################
         self.play_button.clicked[bool].connect(self._handle_play_clicked)
         self.thumbs_button.clicked[bool].connect(self._handle_thumbs_clicked)
         self.zoom_in_button.clicked[bool].connect(self._handle_zoom_in_clicked)
@@ -192,6 +196,12 @@ class BagWidget(QWidget):
     def _handle_publish_clicked(self, checked):
         self._timeline.set_publishing_state(checked)
 
+####################################################################################################################################
+
+    def _handle_captureImage_clicked(self):
+        exit()
+####################################################################################################################################
+    
     def _handle_play_clicked(self, checked):
         if checked:
             self.play_button.setIcon(self.pause_icon)
@@ -311,8 +321,6 @@ class BagWidget(QWidget):
             qDebug("Done loading '%s'" % filename.encode(errors='replace'))
             # put the progress bar back the way it was
             self.set_status_text.emit("")
-            # reset zoom to show entirety of all loaded bags
-            self._timeline.reset_zoom()
         except rosbag.ROSBagException as e:
             qWarning("Loading '%s' failed due to: %s" % (filename.encode(errors='replace'), e))
             self.set_status_text.emit("Loading '%s' failed due to: %s" % (filename, e))
