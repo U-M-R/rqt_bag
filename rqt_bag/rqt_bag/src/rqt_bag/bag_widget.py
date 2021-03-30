@@ -98,7 +98,7 @@ class BagWidget(QWidget):
         self.save_button.setIcon(QIcon.fromTheme('document-save'))
 ####################################################################################################################################
         self.boton_captureImage.setIcon(QIcon.fromTheme('window-new'))
-
+        self.boton_captureImage.setEnabled(False)
         self.boton_captureImage.clicked[bool].connect(self._handle_captureImage_clicked)
 ####################################################################################################################################
         self.play_button.clicked[bool].connect(self._handle_play_clicked)
